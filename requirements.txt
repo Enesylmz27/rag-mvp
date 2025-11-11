@@ -1,0 +1,19 @@
+# requirements.txt
+langchain
+langchain-core
+langchain-community
+langchain-text-splitters
+langchain-chroma
+langchain-huggingface
+langchain-ollama # YENİ (Ollama bağlantısı için)
+
+chromadb
+pypdf
+unstructured
+sentence-transformers # Bu hala embedding (vektörleştirme) için gerekli
+
+# transformers (KALDIRILDI)
+# accelerate (KALDIRILDI)
+# torch (KALDIRILDI)
+
+gradio
