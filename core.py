@@ -31,8 +31,15 @@ def get_llm():
 
 
 # Llama 3 için kullandığımız Prompt Şablonu aynı kalıyor
+# core.py içindeki PROMPT_TEMPLATE değişkenini güncelleyin:
+
 PROMPT_TEMPLATE = """<|begin_of_text|><|start_header_id|>system<|end_header_id|>
-Aşağıdaki bağlamı kullanarak soruya Türkçe ve kısa yanıt ver. Bağlamda açık bilgi yoksa "Bu belgeden çıkaramıyorum." de.<|eot_id|><|start_header_id|>user<|end_header_id|>
+Sen yardımcı bir asistansın. Aşağıdaki "Bağlam" metnini kullanarak "Soru"ya Türkçe ve kısa yanıt ver.
+
+Kurallar:
+1. Sadece verilen bağlamdaki bilgileri kullan.
+2. Eğer sorunun cevabı bağlamda kesin olarak yoksa, yorum yapma veya açıklama getirme. Sadece ve sadece şu cümleyi yaz: "Bu belgeden çıkaramıyorum."
+3. Cevabı uydurma.<|eot_id|><|start_header_id|>user<|end_header_id|>
 
 Bağlam:
 {context}

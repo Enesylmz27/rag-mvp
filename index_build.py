@@ -2,7 +2,6 @@
 from pathlib import Path
 from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-# DEĞİŞEN İMPORTLAR:
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 
@@ -40,13 +39,12 @@ def build_index():
     chunks = splitter.split_documents(raw_docs)
     print(f"🧩 {len(chunks)} parça (chunk) oluşturuldu.")
 
-    # DEĞİŞEN SINIF ADI: HuggingFaceBgeEmbeddings -> HuggingFaceEmbeddings
     emb = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
     # Chroma Veritabanı Oluşturma
-    vectordb = Chroma.from_documents(chunks, emb, persist_directory=DB_DIR)
-
-    vectordb.persist()
+    # Yeni sürümde veriler otomatik olarak diske yazılır.
+    # .persist() çağırmaya gerek YOKTUR.
+    Chroma.from_documents(chunks, emb, persist_directory=DB_DIR)
 
     print(f"✅ Chroma index oluşturuldu: {DB_DIR}/")
 
